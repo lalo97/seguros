@@ -1,6 +1,6 @@
 <?php
-    include("login.php");
-    include("cambios.php");
+    include_once("login.php");
+    include_once("cambios.php");
 ?>
 
 <!DOCTYPE html>

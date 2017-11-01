@@ -1,5 +1,5 @@
 <?php
-    include('session.php');
+    include_once('session.php');
 ?>
 
 <!DOCTYPE html>
@@ -181,7 +181,18 @@
                     </tr>
                   </thead>
                   <tbody id="tabla-empleado">
-                    
+                    <?php
+                        require("conexion.php");
+                        $query = "SELECT * FROM banco";
+                        $res = mysqli_query($conn, $query);
+                        if(mysqli_num_rows($res) > 0) {
+                            while ($elements = mysqli_fetch_assoc($res)){
+                                    echo ('<tr><th scope="row">'.$elements["id"].'</th><td>'.$elements["bankName"].'</td><td>'.$elements["account"].'</td></tr>');
+                            }
+                        }else{
+                            echo "0 Results";
+                        }
+                    ?>
                   </tbody>
                 </table>
 
@@ -205,17 +216,6 @@
     <script src="js/wow.min.js"></script>    
     <script src="js/smooth-scroll.min.js"></script>    
     <script src="js/sitio.js"></script>    
-    <script>
-        
-        $(document).ready(function(){
-       $.getJSON("https://aseguradora.000webhostapp.com/index.php/banco")
-           .done(function(datos_ws){
-            $.each(datos_ws, function(indice, valor){
-                    $("#tabla-empleado").append('<tr><th scope="row">'
-                + valor.id +'</th><td>'+valor.nombre_banco+'</td><td>'+valor.cuneta+'</td></tr>');
-            })
-       });
-    });
     
     </script>
 

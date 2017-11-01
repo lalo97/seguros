@@ -1,6 +1,26 @@
 <?php
-    include("login.php");
-    include("cambios.php");
+include_once("login.php");
+$error='';
+    if (isset($_POST['submit'])) {
+    $nombre=$_POST["nombre"];
+    $apellido=$_POST["apellido"];
+    $puesto=$_POST["puesto"];
+    $email = $_POST["correo"];
+    $tel=$_POST["tel"];
+    $telEmergencias=$_POST["telEmergencias"];
+    
+        if (empty($nombre) || empty($apellido) || empty($puesto) || empty($tel)|| empty($email) || empty($telEmergencias)) {
+            $error = "Falto llenar algun campo";
+        }
+        else{
+            require("conexion.php");
+            $query = "INSERT INTO empleado (`id`, `firstName`, `lastName`, `work`, `mail`, `telephone`, `emergencyTelephone`) VALUES (NULL, '".$nombre."', '".$apellido."', '".$puesto."', '".$email."', '".$tel."', '".$telEmergencias."')";
+            $res = mysqli_query($conn, $query);
+            header("location: profile.php");
+          }
+          
+    }
+    
 ?>
 
 <!DOCTYPE html>
@@ -37,7 +57,7 @@
             <div class="container">
                 <h1 class="h2 wow bounceIn">Agregar Empleado</h1>
                 <div class="container">
-                  <form class="wow bounceInRight" id="editar" action="nuevoEmpleado.php" method="POST">
+                  <form class="wow bounceInRight" id="editar" action="" method="POST">
                     
                     <div class="form-group row">
                       <label for="nombre" class="col-4 form-control-label">Nombre</label>
@@ -53,13 +73,20 @@
                       </div>
                     </div>
                      
-                     <div class="form-group row">
+                    <div class="form-group row">
                       <label for="puesto" class="col-4 form-control-label">Puesto</label>
                       <div class="col-8">
                         <input type="text" name="puesto" placeholder="Desarrollador" class="form-control" id="puesto" >
                       </div>
                     </div>
                     
+                    <div class="form-group row">
+                      <label for="correo" class="col-4 form-control-label">Correo</label>
+                      <div class="col-8">
+                        <input type="email" name="correo" placeholder="juan@hotmail.com" class="form-control" id="email" >
+                      </div>
+                    </div>
+
                     <div class="form-group row">
                       <label for="tel" class="col-4 form-control-label">Telefono</label>
                       <div class="col-8">

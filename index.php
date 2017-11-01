@@ -1,5 +1,5 @@
 <?php
-    include("login.php");
+    include_once("login.php");
     if(isset($_SESSION['login_user'])){
         header("Location: profile.php");
     }  

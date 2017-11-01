@@ -195,27 +195,20 @@
                     </tr>
                   </thead>
                   <tbody>
+
                     <?php
                         require("conexion.php");
-                        $query = "SELECT * FROM usuario";
+                        $query = "SELECT pol.id, emp.firstName, pago.paymentType, seguro.secureType, banco.bankName, pol.cost, pol.paymentDate FROM poliza pol INNER JOIN empleado emp on pol.employeesId = emp.id INNER JOIN pago on pol.paymentId = pago.id INNER JOIN seguro on pol.insuranceId = seguro.id INNER JOIN banco on pol.bankId = banco.id";
                         $res = mysqli_query($conn, $query);
                         if(mysqli_num_rows($res) > 0) {
                             while ($elements = mysqli_fetch_assoc($res)){
-                                foreach($elements as $key => $element){
-                                    echo $key.": ".$element."<br>";
-                                }
+                                echo ('<tr><th scope="row">'.$elements["id"].'</th><td>'.$elements["firstName"].'</td><td>'.$elements["paymentType"].'</td><td>'.$elements["secureType"].'</td><td>'.$elements["bankName"].'</td><td>'.$elements["cost"].'</td><td>'.$elements["paymentDate"].'</td><td><a href="editar.php?id='.$elements["id"].'">Editar</a></td><td><a href="eliminar.php?id='.$elements["id"].'">Eliminar</a></td></tr>');
                             }
                         }else{
                             echo "0 Results";
                         }
-
-                        $poliza = file_get_contents('https://aseguradora.000webhostapp.com/index.php/poliza');
-                        $jsonPoliza = json_decode($poliza, true);
-                        foreach($jsonPoliza as $field=>$valor){
-                            echo ('<tr><th scope="row">'.$valor["id"].'</th><td>'.$valor["nombre_empleado"].'</td><td>'.$valor["tipo_pago"].
-            '</td><td>'.$valor["nombre_tipoSeguro"].'</td><td>'.$valor["nombre_banco"].'</td><td>'.$valor["costo"].'</td><td>'.$valor["fecha"].'</td><td><a href="editar.php?id='.$valor["id"].'">Editar</a></td><td><a href="eliminar.php?id='.$valor["id"].'">Eliminar</a></td></tr>');
-                        }
                     ?>
+
                   </tbody>
                 </table>
 
@@ -235,12 +228,10 @@
     <!-- Carga de archivos  JS -->
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
-    <script src="https://npmcdn.com/bootstrap@4.0.0-alpha.5/dist/js/bootstrap.min.js"></script>
-    <script src="js/smooth-scroll.min.js"></script>    
     <script src="js/bootstrap.js"></script>
     <script src="js/wow.min.js"></script>    
-    <script src="js/sitio.js"></script>    
+    <script src="js/smooth-scroll.min.js"></script>    
+    <script src="js/sitio.js"></script>   
     
 
 </body>

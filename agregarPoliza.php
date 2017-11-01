@@ -1,6 +1,28 @@
 <?php
-    include("login.php");
-    include("cambios.php");
+    include_once("login.php");
+    include_once("cambios.php");
+    $error="";
+    
+    if (isset($_POST['submit'])) {
+
+    $costo=$_POST["costo"];
+    $fecha=$_POST["fecha"];
+    $empleado=$_POST["nombre_empleado"];
+    $banco=$_POST["nombre_banco"];
+    $pago=$_POST["tipo_pago"];
+    $tipoSeguro=$_POST["nombre_tipoSeguro"];
+
+        if (empty($costo) || empty($fecha) || empty($empleado) || empty($banco) || empty($pago) || empty($tipoSeguro)) {
+          $error = "Falto llenar algun campo";
+        }
+        else{
+            require("conexion.php");
+            $query = "INSERT INTO `poliza` (`id`, `employeesId`, `paymentId`, `insuranceId`, `bankId`, `cost`, `paymentDate`) VALUES (NULL, '".$empleado."', '".$pago."', '".$tipoSeguro."', '".$banco."', '".$costo."', '".$fecha."')";
+            $res = mysqli_query($conn, $query);
+            header("location: profile.php");
+        }
+        
+    }
 ?>
 
 <!DOCTYPE html>
@@ -34,34 +56,30 @@
 
         <div class="texto-encabezado text-center">
             <?php
+                require("conexion.php");
                 
-            
-                $strBanco = file_get_contents('https://aseguradora.000webhostapp.com/index.php/banco');
-                $strEmpleado = file_get_contents('https://aseguradora.000webhostapp.com/index.php/empleado');
-                $strPagos = file_get_contents('https://aseguradora.000webhostapp.com/index.php/pagos');
-                $strSeguro = file_get_contents('https://aseguradora.000webhostapp.com/index.php/seguro');
-                $strTipoSeguro = file_get_contents('https://aseguradora.000webhostapp.com/index.php/tiposeguro');
+                $strEmpleado = mysqli_query($conn, "SELECT * FROM empleado");
+                $strBanco = mysqli_query($conn, "SELECT * FROM banco");
+                $strPagos = mysqli_query($conn, "SELECT * FROM pago");
+                $strSeguro = mysqli_query($conn, "SELECT * FROM seguro");
 
-                $jsonBanco = json_decode($strBanco, true);
-                $jsonEmpleado = json_decode($strEmpleado, true);
-                $jsonPagos = json_decode($strPagos, true);
-                $jsonSeguro = json_decode($strSeguro, true);
-                $jsonTipoSeguro = json_decode($strTipoSeguro, true);
-
-            
             ?>
             <div class="container">
                 <h1 class="h2 wow bounceIn">Agregar Poliza</h1>
                 <div class="container">
-                  <form class="wow bounceInRight" id="editar" action="nuevaPoliza.php" method="POST">
+                  <form class="wow bounceInRight" id="editar" action="" method="POST">
                     
                      <div class="form-group row">
                       <label for="nombre_empleado" class="col-4 form-control-label">Nombre Empleado</label>
                       <div class="col-8">
                         <select name="nombre_empleado" class="custom-select">
                          <?php 
-                            foreach($jsonEmpleado as $field=>$value2){
-                                echo ('<option value="'.$value2['id'].'">'.$value2['id'].' '.$value2['nombre_empleado'].'</option>');
+                            if(mysqli_num_rows($strEmpleado) > 0) {
+                            while ($elements = mysqli_fetch_assoc($strEmpleado)){
+                                    echo ('<option value="'.$elements['id'].'">'.$elements['id'].'.- '.$elements['firstName'].' '.$elements['lastName'].'</option>');
+                            }
+                            }else{
+                                echo "0 Results";
                             }
                         ?>
                         </select>
@@ -73,9 +91,12 @@
                       <div class="col-8">
                         <select name="nombre_banco" class="custom-select">
                          <?php 
-                            foreach($jsonBanco as $field=>$value2){
-                              echo ('<option value="'.$value2['id'].'">'.$value2['id'].' '.$value2['nombre_banco'].'</option>');
-
+                            if(mysqli_num_rows($strBanco) > 0) {
+                            while ($elements = mysqli_fetch_assoc($strBanco)){
+                                    echo ('<option value="'.$elements['id'].'">'.$elements['id'].'.- '.$elements['bankName'].'</option>');
+                            }
+                            }else{
+                                echo "0 Results";
                             }
                         ?>
                         </select>
@@ -86,11 +107,13 @@
                       <label for="tipo_pago" class="col-4 form-control-label">Pago</label>
                       <div class="col-8">
                         <select name="tipo_pago" class="custom-select">
-                         <?php 
-                            foreach($jsonPagos as $field=>$value2){
-                                
-                                    echo ('<option value="'.$value2['id'].'">'.$value2['id'].' '.$value2['tipo_pago'].'</option>');
-                    
+                         <?php
+                            if(mysqli_num_rows($strPagos) > 0) {
+                            while ($elements = mysqli_fetch_assoc($strPagos)){
+                                    echo ('<option value="'.$elements['id'].'">'.$elements['id'].'.- '.$elements['paymentType'].'</option>');
+                            }
+                            }else{
+                                echo "0 Results";
                             }
                         ?>
                         </select>
@@ -101,10 +124,14 @@
                       <label for="nombre_tipoSeguro" class="col-4 form-control-label">Tipo de seguro</label>
                       <div class="col-8">
                         <select name="nombre_tipoSeguro" class="custom-select">
-                         <?php 
-                            foreach($jsonTipoSeguro as $field=>$value2){
-                                    echo ('<option value="'.$value2['id'].'">'.$value2['id'].' '.$value2['nombre_tipoSeguro'].'</option>');
+                         <?php
+                            if(mysqli_num_rows($strSeguro) > 0) {
+                            while ($elements = mysqli_fetch_assoc($strSeguro)){
+                                    echo ('<option value="'.$elements['id'].'">'.$elements['id'].'.- '.$elements['secureType'].'</option>');
                             }
+                            }else{
+                                echo "0 Results";
+                            } 
                         ?>
                         </select>
                       </div>
