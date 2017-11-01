@@ -1,0 +1,572 @@
+@charset "UTF-8";
+html {
+  font-size: 15px; }
+
+/*--------
+INDEX
+-----------*/
+.bienvenidos.index {
+  height: 90vh !important; }
+
+.index-piedepagina {
+  height: 10vh !important; }
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  color: #111111; }
+
+.bienvenidos {
+  background: url("../images/fondo-encabezado.jpg") no-repeat center top;
+  color: #fff;
+  background-size: cover;
+  background-attachment: fixed !important;
+  height: 100vh;
+  display: flex;
+  flex-direction: column; }
+
+.encabezado {
+  background: #111111;
+  color: #fff;
+  padding: .5rem 0;
+  transition: all .5s ease; }
+
+.encabezado.fondo-menu {
+  background: #064e4e;
+  padding: 1rem 0; }
+
+.encabezado .container {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap; }
+
+.encabezado .logo img {
+  width: 125px;
+  height: auto; }
+
+/*Estilos para el boton: buscar y menu*/
+.boton-buscar,
+.boton-menu {
+  border: 0;
+  font-size: 2rem;
+  margin: 0;
+  padding: 0 .5rem;
+  background: transparent;
+  color: #fff; }
+
+.boton-buscar:focus,
+.boton-menu:focus {
+  outline: 0; }
+
+.boton-buscar {
+  margin-left: auto;
+  margin-right: .8rem; }
+
+/*Estilos bloque buscar*/
+#bloque-buscar {
+  flex: 1 1 100%; }
+
+.contenedor-bloque-buscar {
+  display: flex;
+  height: 3rem;
+  margin: 1rem 0; }
+
+.contenedor-bloque-buscar input[type="text"] {
+  border: 0;
+  flex: 1 1 auto;
+  border-radius: 5px 0 0 5px;
+  padding: 1rem; }
+
+.contenedor-bloque-buscar input[type="submit"] {
+  flex: 1 1 auto;
+  border: 0;
+  border-radius: 0 5px 5px 0;
+  background: #12AFAF;
+  color: #fff;
+  flex: 0 1 auto;
+  padding: 0 1rem; }
+
+#menu-principal {
+  flex: 1 1 100%; }
+
+#menu-principal ul {
+  padding: 0;
+  list-style: none;
+  margin: 1rem 0 0 0; }
+
+#menu-principal ul a {
+  display: block;
+  padding: .8rem 0;
+  text-align: center;
+  color: #fff;
+  text-transform: uppercase;
+  border-top: 1px solid #8c8888;
+  text-decoration: none; }
+
+#menu-principal ul a:hover,
+#menu-principal ul li.active a {
+  color: #12AFAF; }
+
+.texto-encabezado {
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center; }
+
+.texto-encabezado .display-4 {
+  margin-top: 4rem; }
+
+.form-inline {
+  justify-content: center; }
+
+.form-inline .btn-primary {
+  margin-left: -3px;
+  border-left: 0; }
+
+.btn-primary {
+  color: #fff;
+  background-color: #12AFAF;
+  border-color: transparent;
+  transition: all .5s ease; }
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active:hover {
+  background-color: #009500;
+  border-color: transparent; }
+
+.flecha-bajar a {
+  display: inline-block;
+  color: #fff;
+  font-size: 4rem;
+  animation: flecha-animada 2s ease-in-out infinite; }
+
+@keyframes flecha-animada {
+  from {
+    transform: translateY(0); }
+  50% {
+    transform: translateY(6px); }
+  to {
+    transform: translateY(0); } }
+/*-----------------------------
+SECCION AGENCIA
+------------------------------*/
+.agencia {
+  background: #12AFAF;
+  color: #fff; }
+
+.agregar {
+  margin: auto; }
+
+.agencia table {
+  margin-left: 0rem; }
+
+.agencia table td a {
+  color: white; }
+
+.agencia table td a:hover {
+  color: #d1d1d1; }
+
+/*----------------------------
+SECCION TU MEJOR ELECCI├ôN
+----------------------------*/
+.tu-mejor-eleccion h2 span {
+  color: #12AFAF; }
+
+.tu-mejor-eleccion ul,
+.tu-mejor-eleccion ul li {
+  list-style: none; }
+
+.tu-mejor-eleccion ul li .contenedor-eleccion {
+  text-align: center; }
+
+.tu-mejor-eleccion ul li .contenedor-eleccion h4 {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-top: 1rem; }
+
+.tu-mejor-eleccion ul li {
+  min-height: 9rem; }
+
+.tu-mejor-eleccion ul li img {
+  height: 5rem;
+  width: 5rem; }
+
+.lista-aseguradoras {
+  display: flex;
+  justify-content: space-around; }
+
+/*-------------------------------
+SECCION SERVICIOS
+--------------------------------*/
+.servicios {
+  background: url("../images/fondo-servicios.jpg") no-repeat center center;
+  background-size: cover;
+  background-attachment: fixed !important;
+  color: #fff; }
+
+.servicios article {
+  display: flex;
+  align-items: center;
+  margin: 1rem 0; }
+
+.servicios img {
+  flex: 0 0 60px;
+  overflow: hidden;
+  margin-right: 1rem; }
+
+.servicios h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  flex: 1 1 auto; }
+
+.servicios h3 a {
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-decoration: none; }
+
+.servicios h3 a::after {
+  content: "\f054";
+  font-family: FontAwesome;
+  font-size: 2rem;
+  margin-left: 1rem;
+  opacity: .5;
+  position: relative;
+  left: 0;
+  transition: all .5s ease; }
+
+.servicios h3 a:hover::after {
+  left: -.5rem;
+  opacity: 1;
+  color: #12AFAF; }
+
+table th a {
+  text-decoration: underline;
+  color: white; }
+
+/*---------------------------------
+SECCION ├ÜLTIMOS PROYECTOS
+------------------------------------*/
+.ultimos-proyectos a {
+  text-decoration: none; }
+
+.ultimos-proyectos a h4 {
+  font-size: 1rem;
+  font-weight: bold;
+  text-align: center;
+  color: #111111; }
+
+.ultimos-proyectos .container {
+  padding-left: 0;
+  padding-right: 0; }
+
+.ultimos-proyectos .owl-nav {
+  display: flex;
+  justify-content: center;
+  margin: .3rem 0; }
+
+.ultimos-proyectos .owl-prev,
+.ultimos-proyectos .owl-next {
+  font-size: 3rem;
+  margin: 0 .5rem;
+  color: #12AFAF;
+  transition: all .5s ease; }
+
+.ultimos-proyectos .owl-prev:hover,
+.ultimos-proyectos .owl-next:hover {
+  color: #009500; }
+
+/*----------------------------------------
+SECCION PIE DE PAGINA
+-----------------------------------------*/
+.piedepagina {
+  background: #111111;
+  color: #fff;
+  text-align: center;
+  font-size: .9rem; }
+
+.piedepagina .redes-sociales {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  margin: 0;
+  padding: 0; }
+
+.piedepagina .redes-sociales {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  margin: 0;
+  padding: 0; }
+
+.piedepagina p {
+  margin-bottom: 0; }
+
+.piedepagina .redes-sociales a:hover {
+  opacity: 1; }
+
+.ir-arriba {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  font-size: 3rem;
+  color: #12afaf;
+  text-decoration: none;
+  z-index: 99999;
+  line-height: 0;
+  display: none;
+  transition: all .5s ease; }
+
+.ir-arriba:hover,
+.ir-arriba:focus {
+  outline: 0;
+  text-decoration: none;
+  color: #fff; }
+
+.error {
+  color: red; }
+
+/*-----------------------------------
+LOGIN
+------------------------------------*/
+#login {
+  background: url(../images/background.jpg); }
+
+#login form label {
+  margin-top: .4rem; }
+
+#login h1 {
+  margin-bottom: 5rem; }
+
+/*-----------------------------------
+LOGIN
+------------------------------------*/
+#editarPoliza {
+  background: url(../images/background.jpg); }
+
+#editarPoliza form label {
+  margin-top: .4rem; }
+
+/*---------------------------------------------
+EMPIEZAN LAS MEDIAS QUERIES
+--------------------------------------------*/
+@media (min-width: 768px) {
+  #menu-principal {
+    height: auto !important;
+    display: block;
+    flex: 0 1 auto;
+    margin-left: auto;
+    order: 1; }
+
+  #menu-principal ul {
+    display: flex;
+    margin: 0 0 0 0; }
+
+  #menu-principal ul li a,
+  .welcome {
+    padding: .8rem;
+    text-transform: capitalize;
+    margin: 0 .3rem;
+    border-top: 0px;
+    border-bottom: 4px solid transparent;
+    transition: all 0.5s ease; }
+
+  #menu-principal ul li.active a,
+  #menu-principal ul li a:hover {
+    color: #12AFAF;
+    border-bottom: 4px solid; }
+
+  .boton-buscar {
+    margin-left: 1rem;
+    margin-right: 0;
+    order: 2; }
+
+  #bloque-buscar {
+    order: 3;
+    position: absolute;
+    width: 20rem;
+    right: 3rem;
+    top: 2.8rem;
+    transition: all 0.5s ease; }
+
+  /*SECCION SERVICIOS*/
+  .servicios article {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin: 1rem 0; }
+
+  .servicios img {
+    flex: 0 0 160px;
+    overflow: hidden;
+    margin-right: 0;
+    margin-bottom: 1rem;
+    transition: all 1s ease; }
+
+  .servicios article:hover img {
+    transform: rotateY(360deg);
+    transform-style: preserve-3d; }
+
+  .servicios h3 a::after {
+    content: ""; }
+
+  .servicios h3 {
+    margin: 0 0 .5rem 0;
+    font-size: 1.5rem;
+    flex: 0 1 auto;
+    width: 100%; }
+
+  .servicios h3 a {
+    display: block;
+    width: 100%; }
+
+  .servicios h3 p {
+    display: block;
+    width: 100%; }
+
+  .servicios .btn-secondary {
+    margin-top: auto; }
+
+  /*Pagina servicios*/
+  .paginas-internas .lista-servicios .col-md-4 {
+    display: flex; }
+
+  .paginas-internas .lista-servicios .item-servicios {
+    display: flex;
+    flex-direction: column; }
+
+  .paginas-internas .lista-servicios .item-servicios .btn-primary {
+    margin-top: auto; }
+
+  .tu-mejor-eleccion ul li div img {
+    text-align: center;
+    flex: 0 1 auto;
+    margin-right: auto;
+    transition: all 1s ease; }
+
+  .tu-mejor-eleccion ul li div:hover img {
+    transform: rotateY(360deg);
+    transform-style: preserve-3d; } }
+/*----------------------
+PAGINA SEGURO HOGAR
+-----------------------*/
+.paginas-internas .bienvenidos {
+  height: 75vh; }
+
+.paginas-internas .ruta {
+  background: #12AFAF;
+  color: white; }
+
+.paginas-internas .ruta a {
+  color: white;
+  text-decoration: underline; }
+
+.paginas-internas .ruta a:hover {
+  color: white;
+  text-decoration: none; }
+
+.paginas-internas .tablaseguro {
+  background: #009500;
+  color: white; }
+
+.paginas-internas .table a {
+  color: white; }
+
+/*----------------------
+MEDIA QUERIES
+-----------------------*/
+@media (min-width: 992px) {
+  html {
+    font-size: 16px; }
+
+  .bienvenidos {
+    background: url("../images/fondo-encabezado-grande.jpg") no-repeat center top;
+    background-size: cover; }
+
+  .tu-mejor-eleccion ul li {
+    display: flex; }
+
+  .contenedor-eleccion {
+    flex: 1 0 0px; }
+
+  .tu-mejor-eleccion ul li .contenedor-eleccion h4 {
+    font-size: 1rem;
+    margin-top: 1rem; }
+
+  .tu-mejor-eleccion ul li p {
+    font-size: .9rem; }
+
+  .tu-mejor-eleccion ul li {
+    min-height: 7rem; }
+
+  .servicios {
+    background: url("../images/fondo-servicios-grande.jpg") no-repeat center center;
+    background-size: cover; }
+
+  #menu-principal {
+    height: auto !important;
+    display: block;
+    flex: 0 1 auto;
+    margin-left: auto;
+    order: 1; }
+
+  #menu-principal ul {
+    display: flex;
+    margin: 0 0 0 0; }
+
+  #menu-principal ul li a {
+    padding: .8rem;
+    text-transform: capitalize;
+    margin: 0 .3rem;
+    border-top: 0px;
+    border-bottom: 4px solid transparent;
+    transition: all 0.5s ease; }
+
+  #menu-principal ul li.active a,
+  #menu-principal ul li a:hover {
+    color: #12AFAF;
+    border-bottom: 4px solid; }
+
+  .boton-buscar {
+    margin-left: 1rem;
+    margin-right: 0;
+    order: 2; }
+
+  #bloque-buscar {
+    order: 3;
+    position: absolute;
+    width: 20rem;
+    right: 3rem;
+    top: 2.8rem;
+    transition: all 0.5s ease; }
+
+  /*SECCION SERVICIOS*/
+  .servicios article {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin: 1rem 0; }
+
+  .servicios img {
+    flex: 0 0 160px;
+    overflow: hidden;
+    margin-right: 0;
+    margin-bottom: 1rem;
+    transition: all 1s ease; }
+
+  .servicios article:hover img {
+    transform: rotateY(360deg);
+    transform-style: preserve-3d; }
+
+  .servicios h3 a::after {
+    content: ""; }
+
+  .servicios h3 {
+    margin: 0 0 .5rem 0;
+    font-size: 1.5rem;
+    flex: 0 1 auto; }
+
+  .btn-secondary {
+    margin-top: auto; } }
+
+/*# sourceMappingURL=estilos.css.map */
