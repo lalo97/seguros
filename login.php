@@ -1,5 +1,4 @@
 <?php
-session_start(); // Starting Session
 $error=''; // Variable To Store Error Message
 if (isset($_POST['submit'])) {
     if (empty($_POST['username']) || empty($_POST['password'])) {
@@ -17,6 +16,7 @@ if (isset($_POST['submit'])) {
         if(mysqli_num_rows($res) > 0) {
             while ($row = mysqli_fetch_assoc($res)){
                 $bool = false;
+                session_start();
                 $_SESSION['login_user']=$row["name"]; // Initializing Session
                 header("Location: profile.php");
             }
