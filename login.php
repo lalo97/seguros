@@ -25,4 +25,5 @@ if (isset($_POST['submit'])) {
             $error = "Usuario o Contraseña invalidos";
         }
     }
+    mysqli_close($conn);
 }

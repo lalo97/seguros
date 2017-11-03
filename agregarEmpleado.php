@@ -1,7 +1,13 @@
 <?php
-include_once("login.php");
-$error='';
-    if (isset($_POST['submit'])) {
+  session_start();// Starting Session
+  $error = '';
+  // Storing Session
+  $user_check=$_SESSION['login_user'];
+  if(!isset($user_check)){
+    header('Location: index.php'); // Redirecting To Home Page
+  }
+
+  if (isset($_POST['submit'])) {
     $nombre=$_POST["nombre"];
     $apellido=$_POST["apellido"];
     $puesto=$_POST["puesto"];
@@ -52,7 +58,36 @@ $error='';
 <body class="paginas-internas">
    
     <section class="bienvenidos index" id="editarPoliza">
+        <header class="encabezado fixed-top" role="banner" id="encabezado">
+            <div class="container">
+                <a href="index.php" class="logo">
+                    <img src="images/logo.svg" alt="Logo del sitio">
+                </a>
+                <button type="button" class="boton-buscar" data-toggle="collapse" data-target="#bloque-buscar" aria-expanded="false">
+                    <i class="fa fa-search" aria-hidden="true"></i>
+                </button>
+                <button type="button" class="boton-menu hidden-md-up" data-toggle="collapse" data-target="#menu-principal" aria-expanded="false">
+                    <i class="fa fa-bars" aria-hidden="true"></i></button>
 
+                <form class="collapse" method="post" action="buscar.php" id="bloque-buscar">
+                    <div class="contenedor-bloque-buscar">
+                        <input type="text" name="buscar" placeholder="Id Empleado...">
+                        <input type="submit" value="Buscar">
+                    </div>
+                </form>
+                
+                <nav class="collapse" id="menu-principal">
+                    <ul>
+                        <li><p class="welcome">Bienvenido: <strong><?php echo $_SESSION['login_user'] ?></strong></p></li>
+                        <li><a href="index.php">Inicio</a></li>
+                        <li><a href="agregarPoliza.php">Agregar Poliza</a></li>
+                        <li class="active"><a href="agregarEmpleado.php">Agregar Empleado</a></li>
+                        <li><a href="logout.php">Cerrar Sesión</a></li>
+                    </ul>
+                </nav>
+
+            </div>
+        </header>
         <div class="texto-encabezado text-center">
             <div class="container">
                 <h1 class="h2 wow bounceIn">Agregar Empleado</h1>

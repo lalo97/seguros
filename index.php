@@ -29,6 +29,7 @@
                 $error = "Usuario o Contraseña invalidos";
             }
         }
+        mysqli_close($conn);
     }
 ?>
 

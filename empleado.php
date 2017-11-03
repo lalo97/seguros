@@ -1,5 +1,10 @@
 <?php
-    include('session.php');
+    session_start();// Starting Session
+    // Storing Session
+    $user_check=$_SESSION['login_user'];
+    if(!isset($user_check)){
+        header('Location: index.php'); // Redirecting To Home Page
+    }
 ?>
 
 <!DOCTYPE html>
@@ -51,15 +56,16 @@
                 
                 <nav class="collapse" id="menu-principal">
                     <ul>
-                        <li><p class="welcome">Bienvenido: <?php echo $_SESSION['login_user'] ?></p></li>
+                        <li><p class="welcome">Bienvenido: <strong><?php echo $_SESSION['login_user'] ?></strong></p></li>
                         <li class="active"><a href="index.php">Inicio</a></li>
+                        <li><a href="agregarPoliza.php">Agregar Poliza</a></li>
+                        <li><a href="agregarEmpleado.php">Agregar Empleado</a></li>
                         <li><a href="logout.php">Cerrar Sesión</a></li>
                     </ul>
                 </nav>
 
             </div>
         </header>
-
 
         <div class="texto-encabezado text-center">
 
