@@ -205,7 +205,7 @@
 
                     <?php
                         require("conexion.php");
-                        $query = "SELECT pol.id, emp.firstName, pago.paymentType, seguro.secureType, banco.bankName, pol.cost, pol.paymentDate FROM poliza pol INNER JOIN empleado emp on pol.employeesId = emp.id INNER JOIN pago on pol.paymentId = pago.id INNER JOIN seguro on pol.insuranceId = seguro.id INNER JOIN banco on pol.bankId = banco.id";
+                        $query = "SELECT pol.id, emp.firstName, pago.paymentType, seguro.secureType, banco.bankName, pol.cost, DATE_FORMAT(pol.paymentDate,'%d/%c/%Y') as paymentDate FROM poliza pol INNER JOIN empleado emp on pol.employeesId = emp.id INNER JOIN pago on pol.paymentId = pago.id INNER JOIN seguro on pol.insuranceId = seguro.id INNER JOIN banco on pol.bankId = banco.id";
                         $res = mysqli_query($conn, $query);
                         if(mysqli_num_rows($res) > 0) {
                             while ($elements = mysqli_fetch_assoc($res)){

@@ -1,5 +1,10 @@
 <?php
-    include_once('session.php');
+    session_start();// Starting Session
+    // Storing Session
+    $user_check=$_SESSION['login_user'];
+    if(!isset($user_check)){
+        header('Location: index.php'); // Redirecting To Home Page
+    }
 ?>
 
 <!DOCTYPE html>
@@ -191,20 +196,19 @@
                     <?php
                         $error="";
                         if(isset($_POST["buscar"])){
-                            $strBuscar = file_get_contents('https://aseguradora.000webhostapp.com/index.php/poliza/mis_polizas/'.$_POST["buscar"]);
-                                $strBuscar = json_decode($strBuscar, true);
-                            if(empty($strBuscar)){
-                                $error = "No se encontro ningun Campo";
-                            }else{
-                                foreach($strBuscar as $field=>$value){
-                                        echo ('<tr><th scope="row">'
-                    .$value["id"].'</th><td>'.$value["nombre_empleado"].'</td><td>'.$value["tipo_pago"].'</td><td>'
-                    .$value["nombre_tipoSeguro"].'</td><td>'.$value["cuneta"].'</td><td>'.$value["nombre_banco"].'</td><td>'
-                    .$value["costo"].'</td><td>'.$value["fecha"].'</td></tr>');
+                            require("conexion.php");
+                            $query = "SELECT pol.id, emp.firstName, pago.paymentType, seguro.secureType, banco.bankName, banco.account, pol.cost, DATE_FORMAT(pol.paymentDate,'%d/%c/%Y') as paymentDate FROM poliza pol INNER JOIN empleado emp on pol.employeesId = emp.id INNER JOIN pago on pol.paymentId = pago.id INNER JOIN seguro on pol.insuranceId = seguro.id INNER JOIN banco on pol.bankId = banco.id WHERE emp.firstName='".$_POST['buscar']."'";
+                            $res = mysqli_query($conn, $query);
 
-                                    }
-                            }     
-                        }
+                            if(mysqli_num_rows($res) > 0) {
+                                while ($elements = mysqli_fetch_assoc($res)){
+                                    echo ('<tr><th scope="row">'.$elements["id"].'</th><td>'.$elements["firstName"].'</td><td>'.$elements["paymentType"].'</td><td>'.$elements["secureType"].'</td><td>'.$elements["account"].'</td><td>'.$elements["bankName"].'</td><td>'.$elements["cost"].'</td><td>'.$elements["paymentDate"].'</td></tr>');
+                                }
+                            }else{
+                                echo "0 Results";
+                            }
+                            mysqli_close($conn);
+                            }
                         
     
                     ?>

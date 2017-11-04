@@ -183,7 +183,7 @@
                     <div class="form-group row">
                       <label for="fecha" class="col-4 form-control-label">Fecha</label>
                       <div class="col-8">
-                        <input type="text" name="fecha" class="form-control" placeholder="YYYY-MM-dd" id="fecha" value="">
+                        <input type="date" name="fecha" class="form-control" placeholder="YYYY-MM-dd" id="fecha" value="">
                       </div>
                     </div>
                      

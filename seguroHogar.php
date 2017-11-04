@@ -113,14 +113,17 @@
                   </thead>
                   <tbody>
                     <?php
-                        $poliza = file_get_contents('https://aseguradora.000webhostapp.com/index.php/poliza');
-                        $jsonPoliza = json_decode($poliza, true);
-                        foreach($jsonPoliza as $field=>$valor){
-                            if($valor["nombre_tipoSeguro"]=="Hogar"){
-                                echo ('<tr><th scope="row">'.$valor["id"].'</th><td>'.$valor["nombre_empleado"].'</td><td>'.$valor["tipo_pago"].
-                                '</td><td>'.$valor["nombre_tipoSeguro"].'</td><td>'.$valor["nombre_banco"].'</td><td>'.$valor["costo"].'</td><td>'.$valor["fecha"].'</td><td><a href="editar.php?id='.$valor["id"].'">Editar</a></td><td><a href="eliminar.php?id='.$valor["id"].'">Eliminar</a></td></tr>');    
-                            }                 
+                        require("conexion.php");
+                        $query = "SELECT pol.id, emp.firstName, pago.paymentType, seguro.secureType, banco.bankName, pol.cost, pol.paymentDate FROM poliza pol INNER JOIN empleado emp on pol.employeesId = emp.id INNER JOIN pago on pol.paymentId = pago.id INNER JOIN seguro on pol.insuranceId = seguro.id INNER JOIN banco on pol.bankId = banco.id WHERE seguro.secureType='Hogar'";
+                        $res = mysqli_query($conn, $query);
+                        if(mysqli_num_rows($res) > 0) {
+                            while ($elements = mysqli_fetch_assoc($res)){
+                                echo ('<tr><th scope="row">'.$elements["id"].'</th><td>'.$elements["firstName"].'</td><td>'.$elements["paymentType"].'</td><td>'.$elements["secureType"].'</td><td>'.$elements["bankName"].'</td><td>'.$elements["cost"].'</td><td>'.$elements["paymentDate"].'</td><td><a href="editar.php?id='.$elements["id"].'">Editar</a></td><td><a href="eliminar.php?id='.$elements["id"].'">Eliminar</a></td></tr>');
+                            }
+                        }else{
+                            echo ('<tr><th scope="row" colspan="8">0 Resultados</th></tr>');
                         }
+                        mysqli_close($conn);
                     ?>
                   </tbody>
                 </table>
